@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frequencyanalyzer.FrequencyAnalyzerFXMLController">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -20,7 +19,7 @@
                         <ToggleGroup fx:id="options" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="analysisRadioButton" layoutX="351.0" layoutY="27.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Analiza częstości" toggleGroup="$options" />
+                  <RadioButton fx:id="analysisRadioButton" layoutX="351.0" layoutY="27.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#analyze" text="Analiza częstości" toggleGroup="$options" />
                </children>
             </Pane>
          </top>
@@ -34,7 +33,12 @@
             </Pane>
          </bottom>
          <center>
-            <TextArea fx:id="fileContentTextArea" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextArea fx:id="fileContentTextArea" prefHeight="258.0" prefWidth="600.0" />
+                  <TextArea fx:id="resultTextArea" prefHeight="258.0" prefWidth="600.0" />
+               </children>
+            </Pane>
          </center>
       </BorderPane>
    </children>
