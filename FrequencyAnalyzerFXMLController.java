@@ -21,6 +21,17 @@ import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
+/**
+ * Klasa <code>FrequencyAnalyzerFXMLController</code> reprezentuje zarządzanie 
+ * programem służącycm do zliczania znaków z danego tekstu. Zliczane są wszystkie 
+ * znaki według kodu ASCII od 32 (spacja) do 125 (}). Program umożliwia wczytanie
+ * pliku i umieszczenie jego zawartości w TextArea, a po wybraniu odpowiedniej opcji
+ * następuje zliczanie ilości wystąpień danego znaku. Program zawiera dodatkowe
+ * funkcje takie jak: wyświetlanie tylko znaków występujących w tekście, 
+ * wyświetlane rosnąco według kodu ASCII, wyświetlanie malejąco według kodu ASCII oraz
+ * możliwość zapisu wyniku do pliku .txt.
+ * @author AleksanderSklorz
+ */
 public class FrequencyAnalyzerFXMLController implements Initializable {
     private boolean analyzed = false; 
     private LinkedHashMap<Character, Integer> charactersOccurence;
