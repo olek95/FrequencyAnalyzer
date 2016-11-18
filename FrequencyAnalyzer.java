@@ -14,6 +14,7 @@ public class FrequencyAnalyzer extends Application {
         
         Scene scene = new Scene(root);
         
+        stage.setTitle("Program liczący ilość wystąpień znaków w pliku.");
         stage.setScene(scene);
         stage.show();
     }
