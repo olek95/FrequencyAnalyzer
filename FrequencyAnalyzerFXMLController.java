@@ -1,5 +1,6 @@
 package frequencyanalyzer;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -62,7 +63,9 @@ public class FrequencyAnalyzerFXMLController implements Initializable {
             fileChooser.setTitle("Odczyt plików tekstowych");
             fileChooser.getExtensionFilters().add(new ExtensionFilter("Pliki tekstowe", "*.txt"));
             try{
-                fileContentTextArea.setText(new String(Files.readAllBytes(fileChooser.showOpenDialog(null).toPath())));
+                File selectedFile = fileChooser.showOpenDialog(null);
+                if(selectedFile != null)
+                    fileContentTextArea.setText(new String(Files.readAllBytes(selectedFile.toPath())));
             }catch(IOException e){
                 Logger.getLogger(FrequencyAnalyzerFXMLController.class.getName()).log(Level.SEVERE, null, e);
             }
@@ -72,7 +75,9 @@ public class FrequencyAnalyzerFXMLController implements Initializable {
             fileChooser.setTitle("Zapis wyniku");
             fileChooser.getExtensionFilters().add(new ExtensionFilter("Pliki tekstowe", "*.txt"));
             try{
-                Files.write(fileChooser.showSaveDialog(null).toPath(), resultTextArea.getText().getBytes());
+                File selectedFile = fileChooser.showSaveDialog(null);
+                if(selectedFile != null)
+                    Files.write(selectedFile.toPath(), resultTextArea.getText().replaceAll("\n", System.lineSeparator()).getBytes());
             }catch(IOException e){
                 Logger.getLogger(FrequencyAnalyzerFXMLController.class.getName()).log(Level.SEVERE, null, e);
             }
@@ -88,7 +93,7 @@ public class FrequencyAnalyzerFXMLController implements Initializable {
         });
     }    
     private void writeResult(){
-        resultTextArea.setText("Znak = ilość wystąpień\n");
+        resultTextArea.setText("Znak = ilosc wystapien\n");
         if(!onlyOccurringCheckBox.isSelected()){
             for(Map.Entry<Character, Integer> entry : charactersOccurence.entrySet()){
                 resultTextArea.appendText(entry.getKey() + " = " + entry.getValue() + "\n");
@@ -101,8 +106,11 @@ public class FrequencyAnalyzerFXMLController implements Initializable {
             }
         }
         if(notAlphabeticallyRadioButton.isSelected()){
-            String text = resultTextArea.getText().substring("Znak = ilość wystąpień\n".length());
-            resultTextArea.setText("Znak = ilość wystąpień" + new StringBuilder(text).reverse().toString());
+            String[] textFromTextArea = resultTextArea.getText().split("[\n]"); 
+            resultTextArea.setText(textFromTextArea[0] + "\n");
+            for(int i = textFromTextArea.length - 1; i >= 1; i--){
+                resultTextArea.appendText(textFromTextArea[i] + "\n");
+            }
         }
     }
     private void setAnalysisMode(boolean mode){
