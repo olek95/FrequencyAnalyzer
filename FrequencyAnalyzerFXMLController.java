@@ -40,7 +40,7 @@ public class FrequencyAnalyzerFXMLController implements Initializable {
     @FXML
     private TextArea fileContentTextArea, resultTextArea;
     @FXML
-    private RadioButton analysisRadioButton, fileContentRadioButton, alphabeticallyRadioButton, notAlphabeticallyRadioButton;
+    private RadioButton fileContentRadioButton, alphabeticallyRadioButton, notAlphabeticallyRadioButton;
     @FXML
     private CheckBox onlyOccurringCheckBox;
     @FXML
